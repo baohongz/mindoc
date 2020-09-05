@@ -1,0 +1,152 @@
+<script src="/static/spin.js"></script>
+<link rel="stylesheet" href="/static/w3.css">
+<style type="text/css" media="screen">
+  iframe { z-index: 999999; }
+</style>
+
+<style type="text/css">
+  .panel-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid silver;
+    overflow: hidden;
+    height: 100%;
+    
+    /* avoid browser level touch actions */
+    xtouch-action: none;
+  }
+  
+  .panel-left {
+    flex: 0 0 auto;
+    /* only manually resize */
+    padding: 0px;
+    margin: 0px;
+    width: 50%;
+    height: 100%;
+    white-space: nowrap;
+  }
+  
+  .splitter {
+    flex: 0 0 auto;
+    width: 6px;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAhCAQAAABOpSL+AAAAIklEQVR4AWMwbb/PdR+JZDD9f1/oPhI5sgVGBSruc9xHIgGdSQqqQJGkRgAAAABJRU5ErkJggg==') center center no-repeat #DDDDDD;
+    cursor: col-resize;
+  }
+  
+  .panel-right {
+    flex: 1 1 auto;
+    /* resizable */
+    padding: 0px;
+    width: 50%;
+    height: 100%;
+  }
+  .markdown-body pre {
+    max-height: 1000em;
+    margin: 0px 0px 0px;
+    padding: 5px;
+    font-size: 10pt;
+  }
+  .jsPanel-title {
+    font-size: 12pt;
+  }
+</style>
+
+<script>
+  var quickr_editor;
+  var resultHTML;
+
+  function domarkdown(e){
+    var spinner1 = new Spinner().spin(document.getElementById('resultdiv'));  
+    $('#runbtn').prop('disabled', true);
+    var req = ocpu.call("rmdtext", {
+      text : quickr_editor.getSession().getValue()
+    }, function(session){
+      console.log(session);
+      resultHTML = session.getFileURL("output.html");
+      $('#quickr_result').attr('src', resultHTML);
+      spinner1.stop();
+      $('#runbtn').prop('disabled', false);
+    }).fail(function(text){
+      spinner1.stop();
+      $('#runbtn').prop('disabled', false);
+      alert("Error: " + req.responseText);
+    });
+  }
+
+  $(function(){
+    quickr_editor = ace.edit("quickr_coding");
+    quickr_editor.setTheme("ace/theme/iplastic");
+    quickr_editor.getSession().setMode("ace/mode/r");
+    quickr_editor.getSession().setUseWrapMode(true);
+    quickr_editor.setFontSize("14px");
+  });
+</script>
+
+<table width=100% border=0>
+<tr>
+<td>&nbsp;<button id="runbtn" class="w3-button w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="domarkdown();">Run &raquo;</button></td>
+<td style="text-align:right">&nbsp;<button class="w3-button w3-bar-item w3-green w3-hover-white w3-hover-text-green" style="font-size:16px" onclick="winf=window.open(resultHTML); return false;">Print</button>&nbsp;</td>
+</tr>
+</table>
+
+<div class="panel-container">
+  <div id="quickr_coding" class="panel-left">
+---
+output:
+  html_document:
+  code_folding: hide
+---
+
+```{r, message=FALSE, fig.width=12, fig.height=8, dev='svg', class.source = 'fold-show'}
+library(colorspace)
+library(RColorBrewer)
+library(ggplot2)
+
+hcl_palettes(plot = TRUE)
+
+display.brewer.all()
+
+  </div>
+  
+  <div class="splitter"> </div>
+  
+  <div id="resultdiv" class="panel-right">
+    <iframe id="quickr_result" width="100%" height="100%" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  $(".panel-left").resizable({
+    handleSelector: ".splitter",
+    resizeHeight:  false,
+    onDragEnd: function( event, ui ) {quickr_editor.resize();}
+  });
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      quickr_editor.resize();
+    });
+  });
+  observer.observe(document.getElementById('quickr_coding'));
+
+  function addPlayButton() {
+    console.log( "ready!" );
+    var num = 0;
+    for (let item of document.getElementsByClassName('language-r')) {
+      var onclickCode = "quickr_editor.getSession().setValue('```{r, fig.width=6, fig.height=4.8, dev=\\'svg\\'}\\n'+document.getElementsByClassName('language-r')["+num+"].innerText); plotPanel.unsmallify(); $('#quickr_result').attr('src', '');";
+      item.outerHTML += '<br><button class="w3-green w3-hover-white w3-hover-text-green" onclick="' + onclickCode + '">Play in quickr.ai console</button>';
+      num ++;
+    }
+  }
+
+  var target = document.getElementById('page-content');
+  var observer = new MutationObserver(function(mutations) {
+    addPlayButton();
+  });
+  var config = { attributes: false, childList: true, characterData: false };
+  observer.observe(target, config);
+
+  $( document ).ready(function() {
+    addPlayButton();
+  });
+</script>

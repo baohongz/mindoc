@@ -1,0 +1,189 @@
+<script src="/static/spin.js"></script>
+<link rel="stylesheet" href="/static/w3.css">
+<style type="text/css" media="screen">
+  iframe { z-index: 999999; }
+</style>
+
+<style type="text/css">
+  .panel-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid silver;
+    overflow: hidden;
+    height: 100%;
+
+    /* avoid browser level touch actions */
+    xtouch-action: none;
+  }
+  
+  .panel-left {
+    flex: 0 0 auto;
+    /* only manually resize */
+    padding: 0px;
+    margin: 0px;
+    width: 50%;
+    height: 100%;
+    white-space: nowrap;
+  }
+  
+  .splitter {
+    flex: 0 0 auto;
+    width: 6px;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAhCAQAAABOpSL+AAAAIklEQVR4AWMwbb/PdR+JZDD9f1/oPhI5sgVGBSruc9xHIgGdSQqqQJGkRgAAAABJRU5ErkJggg==') center center no-repeat #DDDDDD;
+    cursor: col-resize;
+  }
+  
+  .panel-right {
+    flex: 0 0 auto;
+    /* resizable */
+    padding: 0px;
+    width: 50%;
+    height: 100%;
+  }
+  .markdown-body pre {
+    max-height: 1000em;
+    margin: 0px 0px 0px;
+    padding: 5px;
+    font-size: 10pt;
+  }
+  .jsPanel-title {
+    font-size: 12pt;
+  }
+</style>
+
+
+<script>
+  var quickr_editor;
+  var resultURL;
+
+  function domarkdown(e){
+    var spinner1 = new Spinner().spin(document.getElementById('resultdiv'));  
+    $('#runbtn').prop('disabled', true);
+    var req = ocpu.call("rmdtext", {
+      text : quickr_editor.getSession().getValue(),
+      out_options: '{"self_contained":[false]}'
+    }, function(session){
+      console.log(session);
+
+      resultURL = session.getFileURL("output.html");
+
+      $.get(resultURL, function(data) {
+        var resultHTML;
+        resultHTML = document.createElement('div');
+        resultHTML.innerHTML = data;
+        var coreHTML = resultHTML.querySelectorAll('.main-container')[0];
+	for (var img of coreHTML.getElementsByTagName('img')) {
+          img.src = session.loc + "files/" + img.attributes.src.value;
+          img.style.width= '100%';
+        }
+        document.getElementById('resultdiv').innerHTML = coreHTML.innerHTML;
+	$("#resultdiv #header").remove();
+        $("#resultdiv .r").remove();
+      });
+
+      spinner1.stop();
+      $('#runbtn').prop('disabled', false);
+      $('#insertbtn').prop('disabled', false);
+    }).fail(function(text){
+      spinner1.stop();
+      $('#runbtn').prop('disabled', false);
+      alert("Error: " + req.responseText);
+    });
+  }
+  function doinsert() {
+    var mainEditor = window.editor.codeEditor;
+    var cursor = mainEditor.getCursor();
+    mainEditor.replaceRange('\n'+document.getElementById('resultdiv').innerHTML.trim()+'\n', cursor);
+/*
+    document.getElementsByClassName('CodeMirror-code')[0].innerText = '\n\n**Test**';
+    var shownum = parseInt(document.getElementById('insertbtn').innerText.replace('Insert Result #',''));
+    var blocknum = shownum - 1;
+    var element = document.getElementById('quickr_output_holder');
+    var newElement = document.createElement('div');
+    newElement.id = 'quickr_output_holder'+blocknum;
+    newElement.innerHTML = document.getElementById('resultdiv').innerHTML.trim();
+    for (var img of newElement.getElementsByTagName('img')) {
+      img.setAttribute('style','');
+    }
+    element.innerHTML += '<button onclick="document.getElementById(\''+newElement.id+'\').remove();this.remove();">Delete #' +shownum+ '</button>'+ newElement.outerHTML;
+    document.getElementById('quickr_output_tab').click();
+*/
+  }
+  function removectl() {
+    $('button[id^="quickr_play"]').remove();
+  }
+
+  $(function(){
+    quickr_editor = ace.edit("quickr_coding");
+    quickr_editor.setTheme("ace/theme/iplastic");
+    quickr_editor.getSession().setMode("ace/mode/r");
+    quickr_editor.getSession().setUseWrapMode(true);
+    quickr_editor.setFontSize("14px");
+  });
+</script>
+
+<table width=100% border=0>
+<tr>
+  <td style="padding-top:5px;padding-bottom:3px;">
+    &nbsp;<button id="runbtn" onclick="domarkdown();">Run &raquo;</button>
+    &nbsp;<button id="insertbtn" onclick="doinsert();">Insert after Editor cursor</button>
+  </td>
+  <td style="text-align:right">
+    &nbsp;<button id="removectl" onclick="removectl();">Remove Control</button>
+    &nbsp;<button onclick="winf=window.open(resultURL); return false;">Print</button>&nbsp;
+  </td>
+</tr>
+</table>
+<div class="panel-container">
+  <div id="quickr_coding" class="panel-left">
+  </div>
+  
+  <div class="splitter"> </div>
+  
+  <div id="resultdiv" class="panel-right">
+  </div>
+</div>
+
+<script>
+  $(".panel-left").resizable({
+    handleSelector: ".splitter",
+    resizeHeight:  false,
+    onDragEnd: function( event, ui ) {quickr_editor.resize();}
+  });
+  var observer = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      quickr_editor.resize();
+    });
+  });
+  observer.observe(document.getElementById('quickr_coding'));
+
+  function addPlayButton() {
+    console.log( "ready!" );
+// console.trace();
+    var num = 0;
+    for (let item of document.getElementsByClassName('language-r')) {
+      var num1 = num+1
+      var onclickCode = "quickr_editor.getSession().setValue('```{r, fig.width=6, fig.height=4.8, dev=\\'svg\\'}\\n'+document.getElementsByClassName('language-r')["+num+"].innerText); plotPanel.unsmallify(); document.getElementById('resultdiv').innerHTML = ''; $('#insertbtn').prop('disabled', true);";
+      item.outerHTML += '<br><button id="quickr_play'+num+'" class="w3-green w3-hover-white w3-hover-text-green" onclick="' + onclickCode + '">Play in quickr.ai console</button>';
+      num ++;
+    }
+  }
+
+  var target = document.getElementsByClassName('editormd-preview-container')[0];
+  var observer = new MutationObserver(function(mutations) {
+    addPlayButton();
+  });
+  var config = { attributes: false, childList: true, characterData: false };
+  observer.observe(target, config);
+
+  $( document).ready(function() {
+    addPlayButton();
+    $('.fa.fa-cloud-upload')[0].onmousedown = function () {
+      removectl();
+    }
+    $('.fa.fa-save.first')[0].onmousedown = function () {
+      removectl();
+    }
+  });
+</script>
