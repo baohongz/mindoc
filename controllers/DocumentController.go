@@ -339,9 +339,7 @@ func (c *DocumentController) Upload() {
 		c.JsonResult(6001, "参数错误")
 	}
 
-beego.Error(source)
 	if source != "" {
-beego.Error("hi")
 		c.JsonResult(0, "Hello")
 		c.StopRun()
 		return

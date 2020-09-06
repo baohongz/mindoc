@@ -96,7 +96,7 @@
     var cursor = mainEditor.getCursor();
     mainEditor.replaceRange('\n'+document.getElementById('resultdiv').innerHTML.trim()+'\n', cursor);
 
-    $.post(window.baseUrl+'/api/upload', {dentify: "mindoc", source: "here", target: "there"}, 
+    $.post(window.baseUrl+'/api/upload', {identify: "mindoc", source: "here", target: "there"}, 
       function(returnedData){
         console.log(returnedData);
     }).fail(function(){
