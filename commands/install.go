@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
-	"github.com/lifei6671/mindoc/conf"
-	"github.com/lifei6671/mindoc/models"
+	"mindoc/conf"
+	"mindoc/models"
 	"flag"
-	"github.com/lifei6671/mindoc/utils"
+	"mindoc/utils"
 	"github.com/astaxie/beego"
 )
 

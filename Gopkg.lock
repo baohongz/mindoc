@@ -18,7 +18,7 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:5f00212f4dbcc843a4594ec2b55c7c990e33cd822b1f3ea7f015286a705b5c76"
+  digest = "1:1b54447b18aa72bc49bf839cc7ce6878504bc11b60a1ed5b538380fc3c721efa"
   name = "github.com/astaxie/beego"
   packages = [
     ".",
@@ -39,16 +39,8 @@
     "utils",
   ]
   pruneopts = "UT"
-  revision = "8ef8fd26068a7b70865acbabee89f6691ae553a9"
-  version = "v1.12.2"
-
-[[projects]]
-  digest = "1:d6afaeed1502aa28e80a4ed0981d570ad91b2579193404256ce672ed0a609e0d"
-  name = "github.com/beorn7/perks"
-  packages = ["quantile"]
-  pruneopts = "UT"
-  revision = "37c8de3658fcb183f997c4e13e8337516ab753e6"
-  version = "v1.0.1"
+  revision = "1b6edafc96ad27b6515fafeccd7339dda3e997b1"
+  version = "v1.11.1"
 
 [[projects]]
   digest = "1:7b94d37d65c0445053c6f3e73090e3966c1c29127035492c349e14f25c440359"
@@ -91,20 +83,6 @@
   revision = "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4"
 
 [[projects]]
-  digest = "1:4a32eb57407190eced21a21abee9ce4d4ab6f0bf113ca61cb1cb2d549a65c985"
-  name = "github.com/golang/protobuf"
-  packages = [
-    "proto",
-    "ptypes",
-    "ptypes/any",
-    "ptypes/duration",
-    "ptypes/timestamp",
-  ]
-  pruneopts = "UT"
-  revision = "d04d7b157bb510b1e0c10132224b616ac0e26b17"
-  version = "v1.4.2"
-
-[[projects]]
   digest = "1:38ec74012390146c45af1f92d46e5382b50531247929ff3a685d2b2be65155ac"
   name = "github.com/gomodule/redigo"
   packages = [
@@ -114,17 +92,6 @@
   pruneopts = "UT"
   revision = "9c11da706d9b7902c6da69c592f75637793fe121"
   version = "v2.0.0"
-
-[[projects]]
-  digest = "1:e631368e174090a276fc00b48283f92ac4ccfbbb1945bcfcee083f5f9210dc00"
-  name = "github.com/hashicorp/golang-lru"
-  packages = [
-    ".",
-    "simplelru",
-  ]
-  pruneopts = "UT"
-  revision = "14eae340515388ca95aa8e7b86f0de668e981f54"
-  version = "v0.5.4"
 
 [[projects]]
   digest = "1:7159b4af2aae0c37b088cea9cb5932b8801a289616c5b789e4669558521cff0c"
@@ -151,47 +118,12 @@
   version = "v0.1.1"
 
 [[projects]]
-  digest = "1:264fadf815f00c8aea01fe40ce97439e692015a1165deac1074a93c017155d8f"
-  name = "github.com/lifei6671/mindoc"
-  packages = [
-    "cache",
-    "commands",
-    "commands/daemon",
-    "conf",
-    "controllers",
-    "converter",
-    "graphics",
-    "mail",
-    "models",
-    "routers",
-    "utils",
-    "utils/cryptil",
-    "utils/filetil",
-    "utils/gopool",
-    "utils/pagination",
-    "utils/requests",
-    "utils/sqltil",
-    "utils/ziptil",
-  ]
-  pruneopts = "UT"
-  revision = "ad9a4128ba4d41a0afe80384d25acbbb8a7cd176"
-  version = "v2.0"
-
-[[projects]]
-  digest = "1:3b97bdf4226ee406513fde826f11709cd38e168847ea46c713e583aee072d317"
+  digest = "1:6a60be4b683dfa1d3e222b6ef96da4d3406280019731c6c1c23bd60cfb7928fe"
   name = "github.com/mattn/go-sqlite3"
   packages = ["."]
   pruneopts = "UT"
-  revision = "2329c6ea75848eeef874a9823d87f406047b64fe"
-  version = "v1.14.1"
-
-[[projects]]
-  digest = "1:ff5ebae34cfbf047d505ee150de27e60570e8c394b3b8fdbb720ff6ac71985fc"
-  name = "github.com/matttproud/golang_protobuf_extensions"
-  packages = ["pbutil"]
-  pruneopts = "UT"
-  revision = "c12348ce28de40eed0136aa2b644d0ee0650e56c"
-  version = "v1.0.1"
+  revision = "862b95943f99f3b40e317a79d41c27ac4b742011"
+  version = "v1.14.2"
 
 [[projects]]
   branch = "master"
@@ -202,58 +134,6 @@
   revision = "83c6a9932646f83e3267f353373d47347b6036b2"
 
 [[projects]]
-  digest = "1:eb04f69c8991e52eff33c428bd729e04208bf03235be88e4df0d88497c6861b9"
-  name = "github.com/prometheus/client_golang"
-  packages = [
-    "prometheus",
-    "prometheus/internal",
-    "prometheus/promhttp",
-  ]
-  pruneopts = "UT"
-  revision = "170205fb58decfd011f1550d4cfb737230d7ae4f"
-  version = "v1.1.0"
-
-[[projects]]
-  digest = "1:0db23933b8052702d980a3f029149b3f175f7c0eea0cff85b175017d0f2722c0"
-  name = "github.com/prometheus/client_model"
-  packages = ["go"]
-  pruneopts = "UT"
-  revision = "7bc5445566f0fe75b15de23e6b93886e982d7bf9"
-  version = "v0.2.0"
-
-[[projects]]
-  digest = "1:4407525bde4e6ad9c1f60113d38cbb255d769e0ea506c8cf877db39da7753b3a"
-  name = "github.com/prometheus/common"
-  packages = [
-    "expfmt",
-    "internal/bitbucket.org/ww/goautoneg",
-    "model",
-  ]
-  pruneopts = "UT"
-  revision = "f39dfa2b000545b3a763b844012958c275a62266"
-  version = "v0.13.0"
-
-[[projects]]
-  digest = "1:5294a2f530e1e82234a20d85d262fa41e87e07e7717f65974c9162aca26d405b"
-  name = "github.com/prometheus/procfs"
-  packages = [
-    ".",
-    "internal/fs",
-    "internal/util",
-  ]
-  pruneopts = "UT"
-  revision = "3a900613711866765af641f387dad41b639dbdc4"
-  version = "v0.1.3"
-
-[[projects]]
-  branch = "master"
-  digest = "1:44fbfce27cb96b7d20217634af466093485a3e8132820acbe95949cb64e7fc60"
-  name = "github.com/shiena/ansicolor"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "a422bbe96644373c5753384a59d678f7d261ff10"
-
-[[projects]]
   digest = "1:9421f6e9e28ef86933e824b5caff441366f2b69bb281085b9dca40e1f27a1602"
   name = "github.com/shurcooL/sanitized_anchor_name"
   packages = ["."]
@@ -262,15 +142,15 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:9a9cf26f20c88b890e03544ed6fc8b04f59f6d618e32a4de2b4b23f61d344580"
+  branch = "release-branch.go1.13"
+  digest = "1:9ebbac90dda5bf921f6243b64d5abd0674ada63cdee056ff671f8658a00034ab"
   name = "golang.org/x/crypto"
   packages = [
     "acme",
     "acme/autocert",
   ]
   pruneopts = "UT"
-  revision = "123391ffb6de907695e1066dc40c1ff09322aeb6"
+  revision = "8b5121be2f68d8fc40bb06467003bdde1040a094"
 
 [[projects]]
   branch = "master"
@@ -284,8 +164,8 @@
   revision = "972c09e46d762a13c1a3c48b1fa9b87e2c537805"
 
 [[projects]]
-  branch = "master"
-  digest = "1:1022338388bb24e849fe585df00c620b9c7f1c18e4662249c48a19575e0d79c5"
+  branch = "release-branch.go1.10"
+  digest = "1:6213c8ecddb6a1eb9fad24e03ef8d0199e9363551e44daa15fb647df9a70f908"
   name = "golang.org/x/net"
   packages = [
     "html",
@@ -293,15 +173,13 @@
     "idna",
   ]
   pruneopts = "UT"
-  revision = "3edf25e44fccea9e11b919341e952fca722ef460"
+  revision = "0ed95abb35c445290478a5348a7b38bb154135fd"
 
 [[projects]]
-  branch = "master"
-  digest = "1:b5bb5cce5738b6bbe73cb892283589b07aba7c9166e9904c874df9d94f42fc00"
+  branch = "release-branch.go1.11"
+  digest = "1:7d7bdf7eb4458522556aaf4a9b535eed3de0b19118ab928330d0c685df006fdf"
   name = "golang.org/x/sys"
   packages = [
-    "internal/unsafeheader",
-    "unix",
     "windows",
     "windows/registry",
     "windows/svc",
@@ -309,7 +187,7 @@
     "windows/svc/mgr",
   ]
   pruneopts = "UT"
-  revision = "d785dc25833f1ad82a72435f1e369f016e16ee2c"
+  revision = "98c5dad5d1a0e8a73845ecc8897d0bd56586511d"
 
 [[projects]]
   digest = "1:fa940333c48808b0d86ef21f412ffcfd0e5084a82f13905c028a404803b1908f"
@@ -335,44 +213,6 @@
   pruneopts = "UT"
   revision = "23ae387dee1f90d29a23c0e87ee0b46038fbed0e"
   version = "v0.3.3"
-
-[[projects]]
-  digest = "1:fd328c5b52e433ea3ffc891bcc4f94469a82bf478558208db2b386aad8a304a1"
-  name = "google.golang.org/protobuf"
-  packages = [
-    "encoding/prototext",
-    "encoding/protowire",
-    "internal/descfmt",
-    "internal/descopts",
-    "internal/detrand",
-    "internal/encoding/defval",
-    "internal/encoding/messageset",
-    "internal/encoding/tag",
-    "internal/encoding/text",
-    "internal/errors",
-    "internal/fieldsort",
-    "internal/filedesc",
-    "internal/filetype",
-    "internal/flags",
-    "internal/genid",
-    "internal/impl",
-    "internal/mapsort",
-    "internal/pragma",
-    "internal/set",
-    "internal/strs",
-    "internal/version",
-    "proto",
-    "reflect/protoreflect",
-    "reflect/protoregistry",
-    "runtime/protoiface",
-    "runtime/protoimpl",
-    "types/known/anypb",
-    "types/known/durationpb",
-    "types/known/timestamppb",
-  ]
-  pruneopts = "UT"
-  revision = "3f7a61f89bb6813f89d981d1870ed68da0b3c3f1"
-  version = "v1.25.0"
 
 [[projects]]
   digest = "1:955697449393d3cdb13dfff4dec026ffffc7714f4fe14d5a4dce4339d185696e"
@@ -427,24 +267,6 @@
     "github.com/howeyc/fsnotify",
     "github.com/kardianos/service",
     "github.com/lifei6671/gocaptcha",
-    "github.com/lifei6671/mindoc/cache",
-    "github.com/lifei6671/mindoc/commands",
-    "github.com/lifei6671/mindoc/commands/daemon",
-    "github.com/lifei6671/mindoc/conf",
-    "github.com/lifei6671/mindoc/controllers",
-    "github.com/lifei6671/mindoc/converter",
-    "github.com/lifei6671/mindoc/graphics",
-    "github.com/lifei6671/mindoc/mail",
-    "github.com/lifei6671/mindoc/models",
-    "github.com/lifei6671/mindoc/routers",
-    "github.com/lifei6671/mindoc/utils",
-    "github.com/lifei6671/mindoc/utils/cryptil",
-    "github.com/lifei6671/mindoc/utils/filetil",
-    "github.com/lifei6671/mindoc/utils/gopool",
-    "github.com/lifei6671/mindoc/utils/pagination",
-    "github.com/lifei6671/mindoc/utils/requests",
-    "github.com/lifei6671/mindoc/utils/sqltil",
-    "github.com/lifei6671/mindoc/utils/ziptil",
     "github.com/mattn/go-sqlite3",
     "github.com/nfnt/resize",
     "gopkg.in/ldap.v2",

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
-	"github.com/lifei6671/mindoc/conf"
+	"mindoc/conf"
 )
 
 type Relationship struct {

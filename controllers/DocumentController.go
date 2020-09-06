@@ -17,14 +17,14 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
-	"github.com/lifei6671/mindoc/conf"
-	"github.com/lifei6671/mindoc/models"
-	"github.com/lifei6671/mindoc/utils"
-	"github.com/lifei6671/mindoc/utils/pagination"
+	"mindoc/conf"
+	"mindoc/models"
+	"mindoc/utils"
+	"mindoc/utils/pagination"
 	"gopkg.in/russross/blackfriday.v2"
-	"github.com/lifei6671/mindoc/utils/cryptil"
-	"github.com/lifei6671/mindoc/utils/filetil"
-	"github.com/lifei6671/mindoc/utils/gopool"
+	"mindoc/utils/cryptil"
+	"mindoc/utils/filetil"
+	"mindoc/utils/gopool"
 	"github.com/astaxie/beego/logs"
 )
 
@@ -331,6 +331,7 @@ func (c *DocumentController) Create() {
 // 上传附件或图片
 func (c *DocumentController) Upload() {
 	identify := c.GetString("identify")
+	source := c.GetString("source")
 	docId, _ := c.GetInt("doc_id")
 	isAttach := true
 
@@ -338,7 +339,9 @@ func (c *DocumentController) Upload() {
 		c.JsonResult(6001, "参数错误")
 	}
 
+beego.Error(source)
 	if source != "" {
+beego.Error("hi")
 		c.JsonResult(0, "Hello")
 		c.StopRun()
 		return

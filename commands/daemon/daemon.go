@@ -6,9 +6,9 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/kardianos/service"
-	"github.com/lifei6671/mindoc/commands"
-	"github.com/lifei6671/mindoc/conf"
-	"github.com/lifei6671/mindoc/controllers"
+	"mindoc/commands"
+	"mindoc/conf"
+	"mindoc/controllers"
 	"path/filepath"
 )
 

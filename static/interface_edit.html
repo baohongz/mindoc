@@ -95,6 +95,15 @@
     var mainEditor = window.editor.codeEditor;
     var cursor = mainEditor.getCursor();
     mainEditor.replaceRange('\n'+document.getElementById('resultdiv').innerHTML.trim()+'\n', cursor);
+
+    $.post(window.baseUrl+'/api/upload', {dentify: "mindoc", source: "here", target: "there"}, 
+      function(returnedData){
+        console.log(returnedData);
+    }).fail(function(){
+      console.log("error");
+    });
+
+
 /*
     document.getElementsByClassName('CodeMirror-code')[0].innerText = '\n\n**Test**';
     var shownum = parseInt(document.getElementById('insertbtn').innerText.replace('Insert Result #',''));

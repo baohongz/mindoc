@@ -3,9 +3,9 @@ package controllers
 import (
 	"math"
 	"github.com/astaxie/beego"
-	"github.com/lifei6671/mindoc/models"
-	"github.com/lifei6671/mindoc/utils/pagination"
-	"github.com/lifei6671/mindoc/conf"
+	"mindoc/models"
+	"mindoc/utils/pagination"
+	"mindoc/conf"
 	"net/url"
 )
 

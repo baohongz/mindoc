@@ -8,14 +8,14 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/lifei6671/mindoc/cache"
-	"github.com/lifei6671/mindoc/conf"
+	"mindoc/cache"
+	"mindoc/conf"
 	"os"
 	"path/filepath"
 	"github.com/PuerkitoBio/goquery"
 	"bytes"
 	"strings"
-	"github.com/lifei6671/mindoc/utils"
+	"mindoc/utils"
 )
 
 // Document struct.

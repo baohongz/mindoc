@@ -2,11 +2,11 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/lifei6671/mindoc/conf"
-	"github.com/lifei6671/mindoc/models"
-	"github.com/lifei6671/mindoc/utils"
-	"github.com/lifei6671/mindoc/utils/pagination"
-	"github.com/lifei6671/mindoc/utils/sqltil"
+	"mindoc/conf"
+	"mindoc/models"
+	"mindoc/utils"
+	"mindoc/utils/pagination"
+	"mindoc/utils/sqltil"
 	"strconv"
 	"strings"
 )

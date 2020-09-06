@@ -2,11 +2,11 @@ package controllers
 
 import (
 	"strings"
-	"github.com/lifei6671/mindoc/models"
+	"mindoc/models"
 	"time"
 	"github.com/astaxie/beego"
-	"github.com/lifei6671/mindoc/conf"
-	"github.com/lifei6671/mindoc/utils/pagination"
+	"mindoc/conf"
+	"mindoc/utils/pagination"
 	"strconv"
 	"fmt"
 	"os"
@@ -15,7 +15,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"html/template"
 	"encoding/json"
-	"github.com/lifei6671/mindoc/utils"
+	"mindoc/utils"
 	"net/url"
 )
 

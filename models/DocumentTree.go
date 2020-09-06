@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"math"
 	"github.com/astaxie/beego/orm"
-	"github.com/lifei6671/mindoc/conf"
+	"mindoc/conf"
 	"fmt"
 )
 
